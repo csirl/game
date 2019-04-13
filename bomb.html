@@ -7,16 +7,23 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css" type="text/css">
+        <script src="js/sounds.js"></script>
+        <script src="js/bomb.js"></script>
     </head>
     <body>
         <audio class="audios" id="bomb-has-been-planted" preload="none"> 
             <source src="sounds/bomb-has-been-planted.mp3" type="audio/mpeg">
         </audio>
-        <source id="bomb-has-been-defused" src="sounds/bomb-has-been-defused.mp3" type="audio/mpeg">
+        <audio class="audios" id="bomb-has-been-defused" preload="none"> 
+            <source src="sounds/bomb-has-been-defused.mp3" type="audio/mpeg">
+        </audio>
+        <audio class="audios" id="bomb-beep" preload="none"> 
+            <source src="sounds/bomb-beep.mp3" type="audio/mpeg">
+        </audio>
 
         <div id="bomb-container" class="responsive">
             <div id="bomb-screen">
-                0:00
+                0:<span id="bomb-timer">00</span>
             </div>
             <div id="bomb-keypad"></div>
             <img src="images/bomb.png" class="responsive" />
@@ -24,10 +31,9 @@
 
         <script>
             $('#bomb-keypad').on('mousedown', function() {
-                $('#bomb-screen').text('0:00');
+                bombSpace.countdownStop();
             }).on('mouseup', function() {
-                $('#bomb-screen').text('0:45');
-                $('#bomb-has-been-planted').trigger('play')
+                bombSpace.countdownStart();
             });
         </script>
     </body>
