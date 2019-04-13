@@ -2,7 +2,7 @@ window.bombSpace = {};
 
 bombSpace.interval = 0;
 
-bombSpace.countdownStart = function() {
+bombSpace.bombHasBeenPlanted = function() {
             $('#bomb-timer').text('45');
             bombSpace.interval = setInterval(bombSpace.countDown, 1000);
             soundSpace.bombHasBeenPlanted();
@@ -10,8 +10,28 @@ bombSpace.countdownStart = function() {
             console.log("bomb started, interval set to: " + bombSpace.interval);
         }
 
+bombSpace.bombHasBeenDefused = function() {
+        bombSpace.countdownStop();
+        bombSpace.counterTerroristsWin();
+    }
+
+bombSpace.terroristsWin = function() {
+        soundSpace.bombExplosion();
+        setTimeout(function(){ 
+            soundSpace.terroristsWin();
+        }, 2000);
+    }
+
+bombSpace.counterTerroristsWin = function() {
+        soundSpace.bombHasBeenDefused();
+        setTimeout(function(){ 
+            soundSpace.counterTerroristsWin();
+        }, 2000);
+    }
+
 bombSpace.countdownStop = function() {
             $('#bomb-timer').text('00');
+            clearInterval(bombSpace.interval);
         }
 
 bombSpace.countDown = function() {
@@ -26,7 +46,8 @@ bombSpace.countDown = function() {
             }
     
             if (timerNumber == 0) {
-                clearInterval(bombSpace.interval);
+                bombSpace.countdownStop();
+                bombSpace.terroristsWin();
             }
     
             $('#bomb-timer').text(timerNumber);
