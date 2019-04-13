@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head id="headerDiv">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>CSIRL</title>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
+    </head>
+    <body>
+        <audio class="audios" id="bomb-has-been-planted" preload="none"> 
+            <source src="sounds/bomb-has-been-planted.mp3" type="audio/mpeg">
+        </audio>
+        <source id="bomb-has-been-defused" src="sounds/bomb-has-been-defused.mp3" type="audio/mpeg">
+
+        <div id="bomb-container" class="responsive">
+            <div id="bomb-screen">
+                0:00
+            </div>
+            <div id="bomb-keypad"></div>
+            <img src="images/bomb.png" class="responsive" />
+        </div>
+
+        <script>
+            $('#bomb-keypad').on('mousedown', function() {
+                $('#bomb-screen').text('0:00');
+            }).on('mouseup', function() {
+                $('#bomb-screen').text('0:45');
+                $('#bomb-has-been-planted').trigger('play')
+            });
+        </script>
+    </body>
+</html>

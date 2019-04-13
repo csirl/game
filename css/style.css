@@ -1,0 +1,33 @@
+body {
+    background-color: #363547;
+}
+
+.responsive {
+    width: 100%;
+    height: auto;
+}
+
+#bomb-container {
+    position: relative;
+}
+
+#bomb-screen {
+    border: solid 1px red;
+    width: 20%;
+    height: 10%;
+    position: absolute;
+    left: 44%;
+    top: 21%;
+    font-family: 'Cute Font', cursive;
+    font-size: 13vw;
+    opacity: 0.5;
+}
+
+#bomb-keypad {
+    border: solid 1px red;
+    width: 24%;
+    height: 25%;
+    position: absolute;
+    left: 31%;
+    top: 41%;
+}
