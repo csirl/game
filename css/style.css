@@ -22,6 +22,7 @@ h1 {
     background-color: grey;
     top: 8%;
     position: absolute;
+    display: none;
 }
 
 #bomb-progress-bar {
@@ -43,7 +44,6 @@ h1 {
 }
 
 #bomb-keypad {
-    border: solid 1px red;
     width: 24%;
     height: 25%;
     position: absolute;
@@ -52,7 +52,6 @@ h1 {
 }
 
 #bomb-wires {
-    border: solid 1px blue;
     width: 26%;
     height: 35%;
     position: absolute;

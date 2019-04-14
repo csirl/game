@@ -52,9 +52,9 @@
         </div>
 
         <div class="buttons">
-            <a id="bomb-drop-pu" class="myButton">Drop/PU Bomb</a>
-            <a class="myButton">Counters Win</a>
-            <a class="myButton">Terrorists Win</a>
+            <a id="btn-bomb-drop-pu" class="myButton">Drop/PU Bomb</a>
+            <a id="btn-counter-terrorists-win" class="myButton">Counters Win</a>
+            <a id="btn-terrorists-win" class="myButton">Terrorists Win</a>
         </div>
 
         <script>
@@ -70,8 +70,16 @@
                 bombSpace.checkDefuseProgress();
             });
 
-            $('#bomb-drop-pu').click(function() {
+            $('#btn-bomb-drop-pu').click(function() {
                 soundSpace.toggleDroppedBombPing();
+            });
+
+            $('#btn-counter-terrorists-win').click(function() {
+                soundSpace.counterTerroristsWin();
+            });
+
+            $('#btn-terrorists-win').click(function() {
+                soundSpace.terroristsWin();
             });
         </script>
     </body>

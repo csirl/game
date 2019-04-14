@@ -4,10 +4,24 @@ bombSpace.interval = 0;
 bombSpace.armed = false;
 bombSpace.armingInterval = 0;
 
+bombSpace.fadeInProgressBar = function() {
+    var progress = document.getElementById("bomb-progress");
+    var progressBar = document.getElementById("bomb-progress-bar");
+    $(progress).fadeIn('slow');
+    $(progressBar).fadeIn('slow');
+}
+
+bombSpace.fadeOutProgressBar = function() {
+    var progress = document.getElementById("bomb-progress");
+    var progressBar = document.getElementById("bomb-progress-bar");
+    $(progress).fadeOut('slow');
+    $(progressBar).fadeOut('slow');
+}
+
 bombSpace.armBomb = function() {
     if (bombSpace.armed == false) {
         var progressBar = document.getElementById("bomb-progress-bar"); 
-        $(progressBar).fadeIn('slow');
+        bombSpace.fadeInProgressBar();
         var width = 1;
         bombSpace.armingInterval = setInterval(frame, 50);
         function frame() {
@@ -15,7 +29,7 @@ bombSpace.armBomb = function() {
                 bombSpace.armed = true;
                 bombSpace.bombHasBeenPlanted();
                 clearInterval(bombSpace.armingInterval);
-                $(progressBar).fadeOut('slow');
+                bombSpace.fadeOutProgressBar();
             } else {
                 width++; 
                 progressBar.style.width = width + '%'; 
@@ -27,7 +41,7 @@ bombSpace.armBomb = function() {
 bombSpace.defuseBomb = function() {
     if (bombSpace.armed == true) {
         var progressBar = document.getElementById("bomb-progress-bar"); 
-        $(progressBar).fadeIn('slow');
+        bombSpace.fadeInProgressBar();
         var width = 100;
         bombSpace.armingInterval = setInterval(frame, 50);
         function frame() {
@@ -36,7 +50,7 @@ bombSpace.defuseBomb = function() {
                 bombSpace.armed = false;
                 bombSpace.counterTerroristsWin();
                 clearInterval(bombSpace.armingInterval);
-                $(progressBar).fadeOut('slow');
+                bombSpace.fadeOutProgressBar();
             } else {
                 width--; 
                 progressBar.style.width = width + '%'; 
@@ -50,7 +64,7 @@ bombSpace.checkArmingProgress = function() {
         clearInterval(bombSpace.armingInterval);
         bombSpace.armingInterval = 0;
         var progressBar = document.getElementById("bomb-progress-bar");
-        $(progressBar).fadeOut('slow');
+        bombSpace.fadeOutProgressBar();
         progressBar.style.width = '1%';
     }
 }
@@ -60,7 +74,7 @@ bombSpace.checkDefuseProgress = function() {
         clearInterval(bombSpace.armingInterval);
         bombSpace.armingInterval = 0;
         var progressBar = document.getElementById("bomb-progress-bar");
-        $(progressBar).fadeOut('slow');
+        bombSpace.fadeOutProgressBar();
         progressBar.style.width = '100%';
     }
 }
