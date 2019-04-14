@@ -37,9 +37,12 @@
             <source src="sounds/dropped-bomb-ping.mp3" type="audio/mpeg">
         </audio>
 
-        <h1>CS IRL</h1>
+        <h1>CSIRL</h1>
 
         <div id="bomb-container" class="responsive">
+            <div id="bomb-progress">
+                <div id="bomb-progress-bar"></div>
+            </div>
             <div id="bomb-screen">
                 0:<span id="bomb-timer">00</span>
             </div>
@@ -56,17 +59,15 @@
 
         <script>
             $('#bomb-keypad').on('mousedown', function() {
-                // Timer + progress bar
-                bombSpace.countdownStop();
+                bombSpace.armBomb();
             }).on('mouseup', function() {
-                bombSpace.bombHasBeenPlanted();
+                bombSpace.checkArmingProgress();
             });
 
             $('#bomb-wires').on('mousedown', function() {
-                // Timer + progress bar
+                bombSpace.defuseBomb();
             }).on('mouseup', function() {
-                bombSpace.countdownStop();
-                bombSpace.counterTerroristsWin();
+                bombSpace.checkDefuseProgress();
             });
 
             $('#bomb-drop-pu').click(function() {

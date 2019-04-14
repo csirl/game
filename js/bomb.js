@@ -1,6 +1,69 @@
 window.bombSpace = {};
 
 bombSpace.interval = 0;
+bombSpace.armed = false;
+bombSpace.armingInterval = 0;
+
+bombSpace.armBomb = function() {
+    if (bombSpace.armed == false) {
+        var progressBar = document.getElementById("bomb-progress-bar"); 
+        $(progressBar).fadeIn('slow');
+        var width = 1;
+        bombSpace.armingInterval = setInterval(frame, 50);
+        function frame() {
+            if (width >= 100) {
+                bombSpace.armed = true;
+                bombSpace.bombHasBeenPlanted();
+                clearInterval(bombSpace.armingInterval);
+                $(progressBar).fadeOut('slow');
+            } else {
+                width++; 
+                progressBar.style.width = width + '%'; 
+            }
+        }
+    }
+}
+
+bombSpace.defuseBomb = function() {
+    if (bombSpace.armed == true) {
+        var progressBar = document.getElementById("bomb-progress-bar"); 
+        $(progressBar).fadeIn('slow');
+        var width = 100;
+        bombSpace.armingInterval = setInterval(frame, 50);
+        function frame() {
+            if (width <= 0) {
+                bombSpace.countdownStop();
+                bombSpace.armed = false;
+                bombSpace.counterTerroristsWin();
+                clearInterval(bombSpace.armingInterval);
+                $(progressBar).fadeOut('slow');
+            } else {
+                width--; 
+                progressBar.style.width = width + '%'; 
+            }
+        }
+    }
+}
+
+bombSpace.checkArmingProgress = function() {
+    if (bombSpace.armed == false) {
+        clearInterval(bombSpace.armingInterval);
+        bombSpace.armingInterval = 0;
+        var progressBar = document.getElementById("bomb-progress-bar");
+        $(progressBar).fadeOut('slow');
+        progressBar.style.width = '1%';
+    }
+}
+
+bombSpace.checkDefuseProgress = function() {
+    if (bombSpace.armed == true) {
+        clearInterval(bombSpace.armingInterval);
+        bombSpace.armingInterval = 0;
+        var progressBar = document.getElementById("bomb-progress-bar");
+        $(progressBar).fadeOut('slow');
+        progressBar.style.width = '100%';
+    }
+}
 
 bombSpace.bombHasBeenPlanted = function() {
             $('#bomb-timer').text('45');
@@ -17,7 +80,7 @@ bombSpace.bombHasBeenDefused = function() {
 
 bombSpace.terroristsWin = function() {
         soundSpace.bombExplosion();
-        setTimeout(function(){ 
+        window.setTimeout(function(){ 
             soundSpace.terroristsWin();
         }, 2000);
     }

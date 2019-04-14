@@ -17,6 +17,20 @@ h1 {
     position: relative;
 }
 
+#bomb-progress {
+    width: 100%;
+    background-color: grey;
+    top: 8%;
+    position: absolute;
+}
+
+#bomb-progress-bar {
+    width: 1%;
+    height: 30px;
+    background-color: green;
+    display: none;
+}
+
 #bomb-screen {
     width: 20%;
     height: 10%;
@@ -65,7 +79,7 @@ h1 {
 	display:inline-block;
 	cursor:pointer;
 	color:#505739;
-	font-family:Arial;
+	font-family: 'Advent Pro', sans-serif;
 	font-size:14px;
 	font-weight:bold;
 	padding:12px 16px;
