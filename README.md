@@ -5,11 +5,22 @@ This game only focuses on DE style maps, Bomb Defusal & Arsenal Demolition. As s
 
 *PLEASE NOTE* - This game requires a back end running for real time communication between players. Simply running this repo will not do it. See the back end component in this GitHub Org for the complete game engine.
 
-## Playing the Game
+## Playing the game
 This repo contains a single page application "game" to simulate the Counter Strike experience. 
 
 <img src="https://github.com/csirl/game/blob/master/images/instructions/game-screen.png?raw=true" width="250" />
 
+### Arming the bomb
+You can arm the bomb by simply touching and holding the keypad on the bomb. This will bring up a progress bar to show you how long you have left to hold the keypad in order to arm. Once the progress bar is full, it will disappear. The timer on the bomb will be set to 0:45 and will begin to countdown. In addition, all players will be notified that the bomb has been planted.
+
+<img src="https://github.com/csirl/game/blob/master/images/instructions/arming-bomb.png?raw=true" width="250" />
+
+If the opposing team does not disarm the bomb by the time the timer hits 0:00, all players will be notified that the terrorists win and an explosion sound will be heard.
+
+### Disarming the bomb
+You can disarm the bomb by simply touching and holding the wires to the right of the bomb keypad. This will bring up a progress bar to show you how long you have left to hold the keypad in order to disarm. Once the progress bar is empty, it will disappear. In addition, all players will be notified that the bomb has been defused and that the counter terrorists have won.
+
+<img src="https://github.com/csirl/game/blob/master/images/instructions/disarming-bomb.png?raw=true" width="250" />
 
 ### Links and Credits
 https://gaming.stackexchange.com/questions/120218/how-many-seconds-count-until-bomb-detonates-in-counter-strike
