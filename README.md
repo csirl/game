@@ -8,7 +8,7 @@ This game only focuses on DE style maps, Bomb Defusal & Arsenal Demolition. As s
 ## Playing the Game
 This repo contains a single page application "game" to simulate the Counter Strike experience. 
 
-![](https://github.com/csirl/game/blob/master/images/instructions/game-screen.png?raw=true =150x)
+![](https://github.com/csirl/game/blob/master/images/instructions/game-screen.png?raw=true) { width: 100px; }
 
 
 ### Links and Credits
