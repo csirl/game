@@ -12,28 +12,28 @@
         <script src="js/bomb.js"></script>
     </head>
     <body>
-        <audio class="audios" id="bomb-has-been-planted" preload="none"> 
+        <audio class="audios" id="bomb-has-been-planted" preload="auto"> 
             <source src="sounds/bomb-has-been-planted.mp3" type="audio/mpeg">
         </audio>
-        <audio class="audios" id="bomb-has-been-defused" preload="none"> 
+        <audio class="audios" id="bomb-has-been-defused" preload="auto"> 
             <source src="sounds/bomb-has-been-defused.mp3" type="audio/mpeg">
         </audio>
-        <audio class="audios" id="bomb-beep" preload="none"> 
+        <audio class="audios" id="bomb-beep" preload="auto"> 
             <source src="sounds/bomb-beep.mp3" type="audio/mpeg">
         </audio>
-        <audio class="audios" id="bomb-explosion" preload="none"> 
+        <audio class="audios" id="bomb-explosion" preload="auto"> 
             <source src="sounds/bomb-explosion.mp3" type="audio/mpeg">
         </audio>
-        <audio class="audios" id="terrorists-win" preload="none"> 
+        <audio class="audios" id="terrorists-win" preload="auto"> 
             <source src="sounds/terrorist-win.mp3" type="audio/mpeg">
         </audio>
-        <audio class="audios" id="counter-terrorists-win" preload="none"> 
+        <audio class="audios" id="counter-terrorists-win" preload="auto"> 
             <source src="sounds/counter-terrorists-win.mp3" type="audio/mpeg">
         </audio>
-        <audio class="audios" id="dropped-bomb" preload="none"> 
+        <audio class="audios" id="dropped-bomb" preload="auto"> 
             <source src="sounds/dropped-bomb.mp3" type="audio/mpeg">
         </audio>
-        <audio class="audios" id="dropped-bomb-ping" preload="none"> 
+        <audio class="audios" id="dropped-bomb-ping" preload="auto"> 
             <source src="sounds/dropped-bomb-ping.mp3" type="audio/mpeg">
         </audio>
 
@@ -58,15 +58,15 @@
         </div>
 
         <script>
-            $('#bomb-keypad').on('mousedown', function() {
+            $('#bomb-keypad').on('touchstart mousedown', function() {
                 bombSpace.armBomb();
-            }).on('mouseup', function() {
+            }).on('touchend mouseup', function() {
                 bombSpace.checkArmingProgress();
             });
 
-            $('#bomb-wires').on('mousedown', function() {
+            $('#bomb-wires').on('touchstart mousedown', function() {
                 bombSpace.defuseBomb();
-            }).on('mouseup', function() {
+            }).on('touchend mouseup', function() {
                 bombSpace.checkDefuseProgress();
             });
 

@@ -49,6 +49,8 @@ h1 {
     position: absolute;
     left: 31%;
     top: 41%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
 }
 
 #bomb-wires {
@@ -57,6 +59,8 @@ h1 {
     position: absolute;
     left: 58%;
     top: 31%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
 }
 
 .myButton {

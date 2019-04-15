@@ -5,22 +5,18 @@ bombSpace.armed = false;
 bombSpace.armingInterval = 0;
 
 bombSpace.fadeInProgressBar = function() {
-    var progress = document.getElementById("bomb-progress");
-    var progressBar = document.getElementById("bomb-progress-bar");
-    $(progress).fadeIn('slow');
-    $(progressBar).fadeIn('slow');
+    $("#bomb-progress").fadeIn('slow');
+    $("#bomb-progress-bar").fadeIn('slow');
 }
 
 bombSpace.fadeOutProgressBar = function() {
-    var progress = document.getElementById("bomb-progress");
-    var progressBar = document.getElementById("bomb-progress-bar");
-    $(progress).fadeOut('slow');
-    $(progressBar).fadeOut('slow');
+    $("#bomb-progress").fadeOut('slow');
+    $("#bomb-progress-bar").fadeOut('slow');
 }
 
 bombSpace.armBomb = function() {
     if (bombSpace.armed == false) {
-        var progressBar = document.getElementById("bomb-progress-bar"); 
+        var progressBar = $("#bomb-progress-bar"); 
         bombSpace.fadeInProgressBar();
         var width = 1;
         bombSpace.armingInterval = setInterval(frame, 50);
@@ -32,7 +28,7 @@ bombSpace.armBomb = function() {
                 bombSpace.fadeOutProgressBar();
             } else {
                 width++; 
-                progressBar.style.width = width + '%'; 
+                $(progressBar).css('width', width + '%'); 
             }
         }
     }
@@ -40,7 +36,7 @@ bombSpace.armBomb = function() {
 
 bombSpace.defuseBomb = function() {
     if (bombSpace.armed == true) {
-        var progressBar = document.getElementById("bomb-progress-bar"); 
+        var progressBar = $("#bomb-progress-bar"); 
         bombSpace.fadeInProgressBar();
         var width = 100;
         bombSpace.armingInterval = setInterval(frame, 50);
@@ -53,7 +49,7 @@ bombSpace.defuseBomb = function() {
                 bombSpace.fadeOutProgressBar();
             } else {
                 width--; 
-                progressBar.style.width = width + '%'; 
+                $(progressBar).css('width', width + '%'); 
             }
         }
     }
@@ -63,9 +59,9 @@ bombSpace.checkArmingProgress = function() {
     if (bombSpace.armed == false) {
         clearInterval(bombSpace.armingInterval);
         bombSpace.armingInterval = 0;
-        var progressBar = document.getElementById("bomb-progress-bar");
+        var progressBar = $("#bomb-progress-bar");
         bombSpace.fadeOutProgressBar();
-        progressBar.style.width = '1%';
+        $(progressBar).css('width', '1%'); 
     }
 }
 
@@ -73,9 +69,9 @@ bombSpace.checkDefuseProgress = function() {
     if (bombSpace.armed == true) {
         clearInterval(bombSpace.armingInterval);
         bombSpace.armingInterval = 0;
-        var progressBar = document.getElementById("bomb-progress-bar");
+        var progressBar = $("#bomb-progress-bar");
         bombSpace.fadeOutProgressBar();
-        progressBar.style.width = '100%';
+        $(progressBar).css('width', '100%'); 
     }
 }
 
@@ -94,6 +90,7 @@ bombSpace.bombHasBeenDefused = function() {
 
 bombSpace.terroristsWin = function() {
         soundSpace.bombExplosion();
+        bombSpace.armed = false;
         window.setTimeout(function(){ 
             soundSpace.terroristsWin();
         }, 2000);
