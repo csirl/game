@@ -22,5 +22,11 @@ You can disarm the bomb by simply touching and holding the wires to the right of
 
 <img src="https://github.com/csirl/game/blob/master/images/instructions/disarming-bomb.png?raw=true" width="250" />
 
+### Additional actions
+There are three buttons across the bottom of the screen. They can be used for the following actions:
+* Drop or Pick Up the bomb - If the person carrying the bomb is killed, they will need to drop the bomb for another teammate to pick it up. You can press this button and it will play a "dropping" sound that will notify all players the bomb has been dropped. In addition, the device where the button was pressed will begin to issue a "ping" sound, so that all players can pin point its position. When the bomb is picked up, you can press this button again to turn off the ping.
+* Counters Win - In the event that all members of the terrorists team is killed, prior to planting the bomb, press this button to notify all players the round is over.
+* Terrorists Win - In the event that all members of the counter terrorists team is killed, prior to planting the bomb, press this button to notify all players the round is over.
+
 ### Links and Credits
 https://gaming.stackexchange.com/questions/120218/how-many-seconds-count-until-bomb-detonates-in-counter-strike
