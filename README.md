@@ -8,6 +8,8 @@ This game only focuses on DE style maps, Bomb Defusal & Arsenal Demolition. As s
 ## Playing the Game
 This repo contains a single page application "game" to simulate the Counter Strike experience. 
 
+![alt text](https://github.com/csirl/game/blob/master/images/instructions/game-screen.png?raw=true "CSIRL game screen")
+
 
 ### Links and Credits
 https://gaming.stackexchange.com/questions/120218/how-many-seconds-count-until-bomb-detonates-in-counter-strike
