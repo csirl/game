@@ -14,7 +14,7 @@ bombSpace.fadeOutProgressBar = function() {
     $("#bomb-progress-bar").fadeOut('slow');
 }
 
-bombSpace.armBomb = function() {
+bombSpace.armBomb = function(socket) {
     if (bombSpace.armed == false) {
         var progressBar = $("#bomb-progress-bar"); 
         bombSpace.fadeInProgressBar();
@@ -23,7 +23,7 @@ bombSpace.armBomb = function() {
         function frame() {
             if (width >= 100) {
                 bombSpace.armed = true;
-                bombSpace.bombHasBeenPlanted();
+                socket.emit('my broadcast event', {data: "bomb-planted"});
                 clearInterval(bombSpace.armingInterval);
                 bombSpace.fadeOutProgressBar();
             } else {
@@ -34,7 +34,7 @@ bombSpace.armBomb = function() {
     }
 }
 
-bombSpace.defuseBomb = function() {
+bombSpace.defuseBomb = function(socket) {
     if (bombSpace.armed == true) {
         var progressBar = $("#bomb-progress-bar"); 
         bombSpace.fadeInProgressBar();
@@ -44,7 +44,7 @@ bombSpace.defuseBomb = function() {
             if (width <= 0) {
                 bombSpace.countdownStop();
                 bombSpace.armed = false;
-                bombSpace.counterTerroristsWin();
+                socket.emit('my broadcast event', {data: "bomb-defused"});
                 clearInterval(bombSpace.armingInterval);
                 bombSpace.fadeOutProgressBar();
             } else {
@@ -78,14 +78,11 @@ bombSpace.checkDefuseProgress = function() {
 bombSpace.bombHasBeenPlanted = function() {
             $('#bomb-timer').text('45');
             bombSpace.interval = setInterval(bombSpace.countDown, 1000);
-            soundSpace.bombHasBeenPlanted();
-    
             console.log("bomb started, interval set to: " + bombSpace.interval);
         }
 
 bombSpace.bombHasBeenDefused = function() {
         bombSpace.countdownStop();
-        bombSpace.counterTerroristsWin();
     }
 
 bombSpace.terroristsWin = function() {

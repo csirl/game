@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>CSIRL</title>
         <meta charset="UTF-8">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Advent+Pro" rel="stylesheet">
@@ -58,28 +59,52 @@
         </div>
 
         <script>
-            $('#bomb-keypad').on('touchstart mousedown', function() {
-                bombSpace.armBomb();
-            }).on('touchend mouseup', function() {
-                bombSpace.checkArmingProgress();
-            });
+            $(document).ready(function(){
+                var socket = io.connect('http://' + 'localhost' + ':' + '5000' + '/test');
+                socket.on('my response', function(msg) {
+                    console.log(msg.data);
 
-            $('#bomb-wires').on('touchstart mousedown', function() {
-                bombSpace.defuseBomb();
-            }).on('touchend mouseup', function() {
-                bombSpace.checkDefuseProgress();
-            });
+                    if (msg.data == "counter-terrorists-win") {
+                        soundSpace.counterTerroristsWin();
+                    }
+                    if (msg.data == "terrorists-win") {
+                        soundSpace.terroristsWin();
+                    }
+                    if (msg.data == "bomb-planted") {
+                        soundSpace.bombHasBeenPlanted();
+                        bombSpace.bombHasBeenPlanted();
+                    }
+                    if (msg.data == "bomb-defused") {
+                        soundSpace.bombHasBeenDefused();
+                        bombSpace.bombHasBeenDefused();
+                    }
+                });
 
-            $('#btn-bomb-drop-pu').click(function() {
-                soundSpace.toggleDroppedBombPing();
-            });
+                $('#btn-counter-terrorists-win').click(function() {
+                    socket.emit('my broadcast event', {data: "counter-terrorists-win"});
+                    return false;
+                });
 
-            $('#btn-counter-terrorists-win').click(function() {
-                soundSpace.counterTerroristsWin();
-            });
+                $('#btn-terrorists-win').click(function() {
+                    socket.emit('my broadcast event', {data: "terrorists-win"});
+                    return false;
+                });
 
-            $('#btn-terrorists-win').click(function() {
-                soundSpace.terroristsWin();
+                $('#bomb-keypad').on('touchstart mousedown', function() {
+                    bombSpace.armBomb(socket);
+                }).on('touchend mouseup', function() {
+                    bombSpace.checkArmingProgress();
+                });
+
+                $('#bomb-wires').on('touchstart mousedown', function() {
+                    bombSpace.defuseBomb(socket);
+                }).on('touchend mouseup', function() {
+                    bombSpace.checkDefuseProgress();
+                });
+
+                $('#btn-bomb-drop-pu').click(function() {
+                    soundSpace.toggleDroppedBombPing();
+                });
             });
         </script>
     </body>
