@@ -1,111 +1,91 @@
 <!DOCTYPE html>
 <html>
-    <head id="headerDiv">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>CSIRL</title>
-        <meta charset="UTF-8">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Advent+Pro" rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css" type="text/css">
-        <script src="js/sounds.js"></script>
-        <script src="js/bomb.js"></script>
-    </head>
-    <body>
-        <audio class="audios" id="bomb-has-been-planted" preload="auto"> 
-            <source src="sounds/bomb-has-been-planted.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audios" id="bomb-has-been-defused" preload="auto"> 
-            <source src="sounds/bomb-has-been-defused.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audios" id="bomb-beep" preload="auto"> 
-            <source src="sounds/bomb-beep.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audios" id="bomb-explosion" preload="auto"> 
-            <source src="sounds/bomb-explosion.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audios" id="terrorists-win" preload="auto"> 
-            <source src="sounds/terrorist-win.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audios" id="counter-terrorists-win" preload="auto"> 
-            <source src="sounds/counter-terrorists-win.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audios" id="dropped-bomb" preload="auto"> 
-            <source src="sounds/dropped-bomb.mp3" type="audio/mpeg">
-        </audio>
-        <audio class="audios" id="dropped-bomb-ping" preload="auto"> 
-            <source src="sounds/dropped-bomb-ping.mp3" type="audio/mpeg">
-        </audio>
 
-        <h1>CSIRL</h1>
+<head id="headerDiv">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CSIRL</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cute+Font" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Advent+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="js/sounds.js"></script>
+    <script src="js/bomb.js"></script>
+</head>
 
-        <div id="bomb-container" class="responsive">
-            <div id="bomb-progress">
-                <div id="bomb-progress-bar"></div>
-            </div>
-            <div id="bomb-screen">
-                0:<span id="bomb-timer">00</span>
-            </div>
-            <div id="bomb-keypad"></div>
-            <div id="bomb-wires"></div>
-            <img src="images/bomb.png" class="responsive" />
+<body>
+    <audio class="audios" id="bomb-has-been-planted" preload="auto">
+        <source src="sounds/bomb-has-been-planted.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="bomb-has-been-defused" preload="auto">
+        <source src="sounds/bomb-has-been-defused.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="bomb-beep" preload="auto">
+        <source src="sounds/bomb-beep.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="bomb-explosion" preload="auto">
+        <source src="sounds/bomb-explosion.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="terrorists-win" preload="auto">
+        <source src="sounds/terrorist-win.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="counter-terrorists-win" preload="auto">
+        <source src="sounds/counter-terrorists-win.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="dropped-bomb" preload="auto">
+        <source src="sounds/dropped-bomb.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="dropped-bomb-ping" preload="auto">
+        <source src="sounds/dropped-bomb-ping.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="dropped-bomb-ping" preload="auto">
+        <source src="sounds/dropped-bomb-ping.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="go-go-go" preload="auto">
+        <source src="sounds/go-go-go.mp3" type="audio/mpeg">
+    </audio>
+    <audio class="audios" id="lock-load" preload="auto">
+        <source src="sounds/lock-load.ogg" type="audio/ogg">
+    </audio>
+    <audio class="audios" id="get-in-position" preload="auto">
+        <source src="sounds/get-in-position.ogg" type="audio/ogg">
+    </audio>
+
+    <div id="header">
+        <div class="header-div-title">
+            CSIRL
         </div>
-
-        <div class="buttons">
-            <a id="btn-bomb-drop-pu" class="myButton">Drop/PU Bomb</a>
-            <a id="btn-counter-terrorists-win" class="myButton">Counters Win</a>
-            <a id="btn-terrorists-win" class="myButton">Terrorists Win</a>
+        <div class="header-div">
+            <input type="radio" id="bomb" name="devicetype" value="bomb" checked>
+            <label for="bomb">Bomb</label>
+            <input type="radio" id="player" name="devicetype" value="player">
+            <label for="player">Player</label>
         </div>
+    </div>
 
-        <script>
-            $(document).ready(function(){
-                var socket = io.connect('http://' + 'localhost' + ':' + '5000' + '/test');
-                socket.on('my response', function(msg) {
-                    console.log(msg.data);
+    <div id="bomb-container" class="responsive">
+        <div id="bomb-progress">
+            <div id="bomb-progress-bar"></div>
+        </div>
+        <div id="bomb-screen">
+            0:<span id="bomb-timer">00</span>
+        </div>
+        <div id="bomb-keypad"></div>
+        <div id="bomb-wires"></div>
+        <img src="images/bomb.png" class="responsive" />
+    </div>
 
-                    if (msg.data == "counter-terrorists-win") {
-                        soundSpace.counterTerroristsWin();
-                    }
-                    if (msg.data == "terrorists-win") {
-                        soundSpace.terroristsWin();
-                    }
-                    if (msg.data == "bomb-planted") {
-                        soundSpace.bombHasBeenPlanted();
-                        bombSpace.bombHasBeenPlanted();
-                    }
-                    if (msg.data == "bomb-defused") {
-                        soundSpace.bombHasBeenDefused();
-                        bombSpace.bombHasBeenDefused();
-                    }
-                });
+    <div class="buttons">
+        <a id="btn-start-match" class="myButton">Start Match</a>
+        <a id="btn-bomb-drop" class="myButton">Drop Bomb</a>
+        <a id="btn-bomb-pu" class="myButton">Pickup Bomb</a>
+        <a id="btn-counter-terrorists-win" class="myButton">Counters Win</a>
+        <a id="btn-terrorists-win" class="myButton">Terrorists Win</a>
+    </div>
 
-                $('#btn-counter-terrorists-win').click(function() {
-                    socket.emit('my broadcast event', {data: "counter-terrorists-win"});
-                    return false;
-                });
+    <script src="js/init.js"></script>
+</body>
 
-                $('#btn-terrorists-win').click(function() {
-                    socket.emit('my broadcast event', {data: "terrorists-win"});
-                    return false;
-                });
-
-                $('#bomb-keypad').on('touchstart mousedown', function() {
-                    bombSpace.armBomb(socket);
-                }).on('touchend mouseup', function() {
-                    bombSpace.checkArmingProgress();
-                });
-
-                $('#bomb-wires').on('touchstart mousedown', function() {
-                    bombSpace.defuseBomb(socket);
-                }).on('touchend mouseup', function() {
-                    bombSpace.checkDefuseProgress();
-                });
-
-                $('#btn-bomb-drop-pu').click(function() {
-                    soundSpace.toggleDroppedBombPing();
-                });
-            });
-        </script>
-    </body>
 </html>

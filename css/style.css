@@ -2,10 +2,23 @@ body {
     background-color: #363547;
 }
 
-h1 {
+#header {
     font-family: 'Advent Pro', sans-serif;
     color: antiquewhite;
     position: absolute;
+    width: 100%;
+    font-size: 4vw;
+    z-index: 1;
+}
+
+.header-div {
+    display: inline-block;
+}
+
+.header-div-title {
+    font-size: 10vw;
+    display: inline-block;
+    margin-right: 40px;
 }
 
 .responsive {
