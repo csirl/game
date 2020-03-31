@@ -2,6 +2,7 @@ window.soundSpace = {};
 
 soundSpace.interval = 0;
 
+// Lets all teams know the match is about to start, messages are staggered as a "countdown"
 soundSpace.startMatch = function () {
     $('#get-in-position').trigger('play');
 
@@ -20,6 +21,8 @@ soundSpace.bombHasBeenPlanted = function () {
 
 soundSpace.bombHasBeenDefused = function () {
     $('#bomb-has-been-defused').trigger('play');
+
+    // Timeout so these two don't play on top of each other
     setTimeout(function () {
         soundSpace.counterTerroristsWin();
     }, 2000);
@@ -28,6 +31,7 @@ soundSpace.bombHasBeenDefused = function () {
 // This should only play on the device acting as the bomb, its an audio signal for players to know where the bomb is
 soundSpace.bombBeep = function () {
     $('#bomb-beep').trigger('play');
+
     // this mp3 came out way too loud, lowering the volume to match the other mp3 files
     $('#bomb-beep')[0].volume = 0.4;
 }
